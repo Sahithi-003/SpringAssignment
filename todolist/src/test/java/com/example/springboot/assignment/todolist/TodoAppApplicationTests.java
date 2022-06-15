@@ -25,24 +25,8 @@ class TodoAppApplicationTests {
 	@MockBean
 	private TodoRepo todoRepo;
 
-	/*@Before
-	public void setUp() {
-		TodoItem item = new TodoItem(1,"Dummy",false);
-
-		Mockito.when(todoRepo.findById(item.getId()))
-				.thenReturn(Optional.of(item));
-	}
-
 	@Test
-	public void whenValidName_thenEmployeeShouldBeFound() {
-		int id=1;
-		TodoItem found = todoService.findById(id);
-
-		assertEquals(1,found.getId());
-	}*/
-
-	@Test
-	public void findAllTest() {
+	void findAllTest() {
 		when(todoRepo.findAll())
 				.thenReturn(Stream.of(new TodoItem(1,"Dummy",true), new TodoItem(2,"Dummy2",false))
 						.collect(Collectors.toList()));
@@ -50,13 +34,13 @@ class TodoAppApplicationTests {
 
 	}
 	@Test
-	public void saveTest(){
+	void saveTest(){
 		TodoItem item=new TodoItem(1,"Dummy",false);
 		todoService.save(item);
 		verify(todoRepo,times(1)).save(item);
 	}
 	@Test
-	public void deleteTest(){
+	void deleteTest(){
 		TodoItem item=new TodoItem(1,"Dummy",false);
 		int id=1;
 		todoService.deleteById(id);
