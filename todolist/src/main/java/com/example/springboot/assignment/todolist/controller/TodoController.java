@@ -17,7 +17,9 @@ public class TodoController {
     @Autowired
     private ModelMapper modelMapper;
     private TodoService todoService;
-    public TodoController() {
+
+    public TodoController(TodoService theTodoService) {
+        todoService = theTodoService;
     }
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage(){

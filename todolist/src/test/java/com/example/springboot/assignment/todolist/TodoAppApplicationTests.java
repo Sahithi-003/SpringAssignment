@@ -11,16 +11,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,14 +36,6 @@ class TodoAppApplicationTests {
 						.collect(Collectors.toList()));
 		assertEquals(2,todoService.findAll().size());
 
-	}
-
-
-	@Test
-	void failHandlerShouldReturnView() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/access-denied"))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(view().name("denied"));
 	}
 
 	@Test
