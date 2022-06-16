@@ -6,6 +6,7 @@ import com.example.springboot.assignment.todolist.service.TodoServiceImpl;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,6 +39,19 @@ class TodoAppApplicationTests {
 		assertEquals(2,todoService.findAll().size());
 
 	}
+//	@Test
+//	void findByIdTest() {
+//		TodoItem item=new TodoItem(1,"Dummy",false);
+//		Optional<TodoItem> result = todoRepo.findById(1);
+//		TodoItem theTodoitem = null;
+//		if (result.isPresent()) {
+//			theTodoitem = result.get();
+//		}
+//		when(todoRepo.findById(1)).thenReturn(Optional.ofNullable(theTodoitem));
+//		assertEquals(1,todoService.findById(1));
+	//}
+
+
 
 	@Test
 	void saveTest(){

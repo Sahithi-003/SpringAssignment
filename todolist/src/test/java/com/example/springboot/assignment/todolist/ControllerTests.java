@@ -2,9 +2,11 @@ package com.example.springboot.assignment.todolist;
 
 import com.example.springboot.assignment.todolist.controller.TodoController;
 import com.example.springboot.assignment.todolist.dao.TodoRepo;
+import com.example.springboot.assignment.todolist.entity.TodoItem;
 import com.example.springboot.assignment.todolist.service.TodoServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,10 +15,19 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -64,6 +75,18 @@ class ControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("todolist/todos"));
     }
-    
+
+    @Test
+    void saveView() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/todolist/showFormForAdd"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("todolist/todos"));
+    }
+    @Test
+    void updateView() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/todolist/showFormForUpdate"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("todolist/todos"));
+    }
 
 }
