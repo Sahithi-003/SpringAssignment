@@ -30,9 +30,11 @@
         <input type="text" th:field="*{title}"
                class="form-control mb-4 col-4" placeholder="Title">
 
-        <input type="text" th:field="*{done}"
-               class="form-control mb-4 col-4" placeholder="Done">
-
+        <select name="status" th:field="*{status}">
+            <option value="true">done</option>
+            <option value="false">InProgress</option>
+        </select>
+        <br><br>
         <button type="submit" class="btn btn-info col-2">Save</button>
 
     </form>

@@ -27,8 +27,8 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)     //creates database connection
-                .usersByUsernameQuery("select username,password,'true' from users  where username=?")
-                .authoritiesByUsernameQuery("select username,role from users where username=?")
+                .usersByUsernameQuery("select username,password,'true' from user  where username=?")
+                .authoritiesByUsernameQuery("select username,role from authority where username=?")
                 .passwordEncoder(passwordEncoder);
     }
 
@@ -38,8 +38,6 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
         String admin ="ROLE_ADMIN";
 
         http.authorizeRequests()
-
-                .antMatchers("/todolist/showMyLoginPage").permitAll()
                 .antMatchers("/todolist/showFormForUpdate").hasAuthority(admin)
                 .antMatchers("/todolist/showFormForAdd").hasAuthority(admin)
                 .antMatchers("/todolist/delete").hasAuthority(admin)

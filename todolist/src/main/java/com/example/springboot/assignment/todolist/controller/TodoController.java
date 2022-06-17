@@ -21,10 +21,6 @@ public class TodoController {
     public TodoController(TodoService theTodoService) {
         todoService = theTodoService;
     }
-    @GetMapping("/showMyLoginPage")
-    public String showMyLoginPage(){
-        return "fancy-login";
-    }
 
     // add mapping for "/list"
     @GetMapping("/list")

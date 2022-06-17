@@ -1,9 +1,14 @@
 package com.example.springboot.assignment.todolist.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+import java.util.List;
+
+@Data
 @Entity
-@Table(name="todolist")
+@Table(name="assignment_table")
 public class TodoItem {
 
     @Id
@@ -11,43 +16,38 @@ public class TodoItem {
     @Column(name="id")
     private int id;
 
-    @Column(name="title")
+    @Column(name="task")
     private String title;
 
-    @Column(name="done")
-    private boolean done;
+    @Column(name="status")
+    private boolean status;
+
+//    @OneToMany(fetch = FetchType.EAGER,
+//            cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+//                    CascadeType.REFRESH})
+//    //@JoinTable(joinColumns = @JoinColumn(name = "id") ,name = "user")
+//    @JoinColumn(name = "assignment_id", referencedColumnName = "id")
+//    private List<User> users;
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="user",
+            joinColumns=@JoinColumn(name="assignment_id"),
+            inverseJoinColumns=@JoinColumn(name="authority_id")
+    )
+    private List<Authority> authorities;
 
     public TodoItem(){
 
     }
 
-    public TodoItem(int id, String title, boolean done) {
+    public TodoItem(int id, String title, boolean status) {
         this.id = id;
         this.title = title;
-        this.done = done;
+        this.status = status;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
 }

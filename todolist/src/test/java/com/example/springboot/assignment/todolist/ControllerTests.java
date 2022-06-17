@@ -57,12 +57,12 @@ class ControllerTests {
         assertThat(basicController).isNotNull();
     }
 
-    @Test
-    void login() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/todolist/showMyLoginPage"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("fancy-login"));
-    }
+//    @Test
+//    void login() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/todolist/showMyLoginPage"))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("fancy-login"));
+//    }
     @Test
     void shouldReturnIndexView() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/todolist/list"))
@@ -79,12 +79,6 @@ class ControllerTests {
     @Test
     void saveView() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/todolist/showFormForAdd"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("todolist/todos"));
-    }
-    @Test
-    void updateView() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/todolist/showFormForUpdate"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("todolist/todos"));
     }

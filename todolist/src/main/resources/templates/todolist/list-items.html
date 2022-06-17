@@ -41,7 +41,7 @@
         <tr th:each="tempItem : ${todolist}">
 
             <td th:text="${tempItem.title}" />
-            <td th:text="${tempItem.done}" />
+            <td th:text="${tempItem.status}" />
 
             <td> <a th:href="@{/todolist/showFormForUpdateStatus(itemId=${tempItem.id})}"
                     class="btn btn-info btn-sm">status Update</a>
