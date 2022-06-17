@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,7 +33,7 @@ class ServiceTests {
 		assertEquals(2, todoService.findAll().size());
 
 	}
-
+	
 	@Test
 	void saveTest(){
 		TodoItem item=new TodoItem(1,"Dummy",false);
@@ -45,5 +47,6 @@ class ServiceTests {
 		todoService.deleteById(id);
 		verify(todoRepo,times(1)).deleteById(id);
 	}
+
 
 }
