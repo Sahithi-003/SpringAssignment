@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -10,6 +12,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <title>Save Employee</title>
+    <style>
+        .error{
+            color:red;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,12 +34,18 @@
         <!-- Add hidden form field to handle update -->
         <input type="hidden" th:field="*{id}" />
 
-        <input type="text" th:field="*{title}"
-               class="form-control mb-4 col-4" placeholder="Title">
+        <input type="text" th:field="*{title}" class="form-control mb-4 col-4" placeholder="Title" />
+        <p class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+<!--        <div class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>-->
+<!--        <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Task Null</td>-->
+        <f:validateBean disabled="true" />
 
-        <input type="text" th:field="*{done}"
-               class="form-control mb-4 col-4" placeholder="Done">
 
+        <select name="status" th:field="*{status}">
+            <option value="true">done</option>
+            <option value="false">InProgress</option>
+        </select>
+        <br><br>
         <button type="submit" class="btn btn-info col-2">Save</button>
 
     </form>

@@ -32,7 +32,7 @@
         <tr>
             <th>Title</th>
             <th>Status</th>
-            <th>Update Status</th>
+            <th sec:authorize="hasRole('ROLE_USER')">Update Status</th>
             <th sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
         </tr>
         </thead>
@@ -41,25 +41,27 @@
         <tr th:each="tempItem : ${todolist}">
 
             <td th:text="${tempItem.title}" />
-            <td th:text="${tempItem.done}" />
+            <td th:text="${tempItem.status}" />
 
-            <td> <a th:href="@{/todolist/showFormForUpdateStatus(itemId=${tempItem.id})}"
+            <td sec:authorize="hasRole('ROLE_USER')" > <a th:href="@{/todolist/showFormForUpdateStatus(itemId=${tempItem.id})}"
                     class="btn btn-info btn-sm">status Update</a>
             </td>
 
             <!-- Add update button/link -->
+            <div sec:authorize="hasRole('ROLE_ADMIN')" >
             <td>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/todolist/showFormForUpdate(itemId=${tempItem.id})}"
+                <a th:href="@{/todolist/showFormForUpdate(itemId=${tempItem.id})}"
                    class="btn btn-info btn-sm">
                     Update
                 </a>
 
-                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/todolist/delete(itemId=${tempItem.id})}"
+                <a th:href="@{/todolist/delete(itemId=${tempItem.id})}"
                    class="btn btn-danger btn-sm"
                    onclick="if(!(confirm('Are you sure you want to delete this?'))) return false">
                     Delete
                 </a>
             </td>
+            </div>
 
         </tr>
         </tbody>

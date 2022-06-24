@@ -1,53 +1,31 @@
 package com.example.springboot.assignment.todolist.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
-
+import javax.validation.constraints.NotEmpty;
+@Getter
+@Setter
 @Entity
-@Table(name="todolist")
+@NoArgsConstructor
+@Table(name="assignment_table")
 public class TodoItem {
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
-    @Column(name="title")
+    @NotEmpty(message = "Task is mandatory")
+    @Column(name="task")
     private String title;
 
-    @Column(name="done")
-    private boolean done;
+    @Column(name="status")
+    private boolean status;
 
-    public TodoItem(){
-
-    }
-
-    public TodoItem(int id, String title, boolean done) {
-        this.id = id;
+    public TodoItem(String title, boolean status) {
         this.title = title;
-        this.done = done;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
+        this.status = status;
     }
 }

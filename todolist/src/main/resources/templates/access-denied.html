@@ -1,9 +1,11 @@
-<html>
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <title>Access Denied</title>
 </head>
 <body>
-    <h2>Access Denied - You are bot authorized to access this resource.</h2>
+    <h2>Access Denied - You are not authorized to access this resource.</h2>
     <hr>
 
     <a th:href="@{/todolist/list}">Back to Todo List</a>
