@@ -28,15 +28,13 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)     //creates database connection
                 .usersByUsernameQuery("select username,password,'true' from user  where username=?")
-                .authoritiesByUsernameQuery("select username,role from authority where username=?")
+                .authoritiesByUsernameQuery("SELECT workbench.user.username, workbench.authority.role FROM user INNER JOIN authority ON workbench.user.id = workbench.authority.user_id where workbench.user.username=?")
                 .passwordEncoder(passwordEncoder);
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-
         String admin ="ROLE_ADMIN";
-
         http.authorizeRequests()
                 .antMatchers("/todolist/showFormForUpdate").hasAuthority(admin)
                 .antMatchers("/todolist/showFormForAdd").hasAuthority(admin)
@@ -44,14 +42,13 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/todolist/list", true)
+                .defaultSuccessUrl("/todolist/success", true)
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied");
-
-
     }
+
 }

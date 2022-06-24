@@ -85,14 +85,14 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>5.6.5</version>
+			<version>5.2.0.RELEASE</version>
 		</dependency>
 
 		<!-- Add spring security taglibs support -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>5.6.5</version>
+			<version>5.2.0.RELEASE</version>
 		</dependency>
 
 		<!-- Adding MySQL and c3p0 support -->
@@ -105,6 +105,11 @@
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
 			<version>2.3.1</version>
 		</dependency>
 
@@ -172,6 +177,8 @@
 			<version>4.2.0</version>
 			<scope>test</scope>
 		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -179,6 +186,8 @@
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.hamcrest</groupId>
@@ -195,6 +204,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.jacoco</groupId>
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.8.8</version>
@@ -205,12 +220,12 @@
 			<artifactId>sonar-scanner-api</artifactId>
 			<version>2.16.2.588</version>
 		</dependency>
+
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -229,19 +244,22 @@
 			<version>1.18.22</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.8.2</version>
-			<scope>test</scope>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>2.7.0</version>
+		</dependency>
 	</dependencies>
 
 
 	<build>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -281,7 +299,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-
 	</build>
 
 </project>

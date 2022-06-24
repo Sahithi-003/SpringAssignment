@@ -1,10 +1,14 @@
 package com.example.springboot.assignment.todolist.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
+
+@Getter
+@Setter
 @Entity
 @Table(name="authority")
 public class User {
@@ -16,24 +20,21 @@ public class User {
     private String username;
     @Column(name="password")
     private String password;
-
-//    @ManyToOne(fetch=FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-//            CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinColumn(name="assignment_id")
-//    private TodoItem todoItem;
-//
-//    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-//            CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinTable(inverseJoinColumns = @JoinColumn(name="authority_id"),name = "authority")
-//    private Authority authority;
-
-
     public User() {
     }
-
-    public User(int id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="user_role",
+            joinColumns=@JoinColumn(name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="assignment_id")
+    )
+    private List<TodoItem> items;
+
+
 }
